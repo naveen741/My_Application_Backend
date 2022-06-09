@@ -14,9 +14,9 @@
   },
   "name": "my_backend",
   "version": "1.0.0",
-  "main": "srever1.js",
+  "main": "server1.js",
   "scripts": {
-    "start": "node server4",
+    "start": "node server1",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
