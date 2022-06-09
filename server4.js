@@ -6,12 +6,12 @@ const cors = require("cors");
 const bodyParser = require('body-parser')
 const compiler = require('ezcompilex');
 app.use(cors());
-const port=8084;
+const port=5000;
 const server=http.createServer(app);
 app.use(bodyParser.json())
 const option = {stats : true};
 compiler.init(option);
-server.listen(port,()=>{
+server.listen(process.env.PORT || port,()=>{
     console.log(`listening port:${port}`)
 });
 app.get('/', (req, res) => {
