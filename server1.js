@@ -8,19 +8,19 @@ const bodyParser = require('body-parser')
 const crypto = require('crypto');
 const compiler = require('ezcompilex');
 app.use(cors());
-const port=8082;
+const port=5000;
 const server=http.createServer(app);
 //app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 const option = {stats : true};
 compiler.init(option);
-server.listen(process.env.PORT || 5000,()=>{
+server.listen(process.env.PORT || port,()=>{
     console.log(`listening port:${port}`)
 });
-// db.connect(function(err) {
-//     if (err) throw err;
-//     console.log("Connected!");
-// });
+db.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+});
 app.get('/', (req, res) => {
     res.send({
       status: 200,
@@ -72,65 +72,4 @@ app.post('/checkdata',(req,res)=>{
     res.status(200).send({ status: 200, message: flag.message })
   }) 
 });
-app.post(`/onlineCompiler`,(req,res)=>{
-    const dir = 'temp';
-    if (!fs.existsSync(dir)){
-      fs.mkdirSync(dir);
-    }
-    console.log(req.body)
-    const codeDetail=req.body
-    if(codeDetail.lang === 'C'||codeDetail.lang === 'C++'){
-      const envData =  { OS : "Linux" , cmd : 'gcc'}
-      if(codeDetail.inputRadio)
-        compiler.compileCPPWithInput(envData , codeDetail.code, codeDetail.input , sendData);     	
-      else
-        compiler.compileCPP(envData , codeDetail.code , sendData);
-    }
-    else if(codeDetail.lang === 'Python'){
-      const envData={OS : "Linux"};
-      if(codeDetail.inputRadio)
-        compiler.compilePythonWithInput(envData , codeDetail.code, codeDetail.input , sendData);     	
-      else
-        compiler.compilePython(envData , codeDetail.code , sendData);
-    }
-    else if(codeDetail.lang === 'Java')
-    {
-      const envData={OS : "Linux"};
-      if(codeDetail.inputRadio)
-        compiler.compileJavaWithInput(envData , codeDetail.code, codeDetail.input , sendData);     	
-      else
-        compiler.compileJava(envData , codeDetail.code , sendData);
-    }
-    function sendData(data) {
-      fs.rmdir(dir, { recursive: true }, (err) => {
-          if (err) {
-              throw err;
-          }
-      }); 
-      if(data.error)
-      {
-        try{
-          res.send({output : data.error})
-          res.end()
-        }
-        catch(e){
-          console.log(e);
-        }
-            		
-      }
-      else
-      {
-        console.log(data.output)
-        try{
-          res.send({output : data.output})
-          res.end()
-        }
-        catch(e){
-          console.log(e);
-        }
-      }
-    }
-})
-// compiler.flush(function(){
-//   console.log('All temporary files flushed !'); 
-// }); 
+
