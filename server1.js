@@ -7,7 +7,6 @@ const cors = require("cors");
 const bodyParser = require('body-parser')
 const crypto = require('crypto');
 const compiler = require('ezcompilex');
-const e = require('express');
 app.use(cors());
 const port=8082;
 const server=http.createServer(app);
