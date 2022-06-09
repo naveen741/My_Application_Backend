@@ -1,21 +1,39 @@
 {
   "dependencies": {
+    "axios": "^0.27.2",
+    "compilex": "^0.7.4",
     "cors": "^2.8.5",
     "express": "^4.18.1",
+    "express-graphql": "^0.12.0",
+    "ezcompilex": "^0.7.4",
     "formidable": "^2.0.1",
-    "mongodb": "^4.6.0",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "path": "^0.12.7",
+    "request": "^2.88.2"
   },
   "name": "my_backend",
   "version": "1.0.0",
-  "main": "firstnode.js",
+  "main": "srever1.js",
   "scripts": {
-    "start":"node app",
+    "start": "node server1",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "keywords": [
+    "heroku"
+  ],
+  "author": "naveen",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naveen741/My_Application_Backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/naveen741/My_Application_Backend/issues"
+  },
+  "devDependencies": {},
+  "description": "",
+  "engines": {
+    "node": "16.x"
+  }
 }
