@@ -14,7 +14,7 @@ const server=http.createServer(app);
 app.use(bodyParser.json())
 const option = {stats : true};
 compiler.init(option);
-server.listen(port,()=>{
+server.listen(process.env.PORT || 5000,()=>{
     console.log(`listening port:${port}`)
 });
 // db.connect(function(err) {
