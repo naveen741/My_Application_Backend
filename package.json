@@ -7,6 +7,7 @@
     "express-graphql": "^0.12.0",
     "ezcompilex": "^0.7.4",
     "formidable": "^2.0.1",
+    "mongodb": "^4.7.0",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.16",
     "path": "^0.12.7",
@@ -16,7 +17,7 @@
   "version": "1.0.0",
   "main": "server1.js",
   "scripts": {
-    "start": "node server1",
+    "start": "node server2",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -31,7 +32,6 @@
   "bugs": {
     "url": "https://github.com/naveen741/My_Application_Backend/issues"
   },
-  "devDependencies": {},
   "description": "",
   "engines": {
     "node": "16.x"
