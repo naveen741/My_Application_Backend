@@ -9,7 +9,7 @@ const crypto = require('crypto');
 const compiler = require('ezcompilex');
 const collection = client.db("sample").collection("mytable");
 app.use(cors());
-const port=8080;
+const port=5000;
 const server=http.createServer(app);
 //app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
