@@ -58,7 +58,7 @@ app.post('/checkdata',(req,res)=>{
     if(err) throw err
     //console.log(JSON.stringify(result))
     const allUserDetail= result
-    console.log(allUserDetail);
+    // console.log(allUserDetail);
     allUserDetail.map((i)=>{
       const mykey = crypto.createDecipher('aes-128-cbc', 'userPassword');
       let mypassword = mykey.update(i.user_password, 'hex', 'utf8')
