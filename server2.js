@@ -64,7 +64,7 @@ app.post('/checkdata',(req,res)=>{
       let mypassword = mykey.update(i.user_password, 'hex', 'utf8')
       mypassword += mykey.final('utf8');
       i.user_password=mypassword;
-      console.log(mypassword+"<-->"+userDetail.user_password)
+      // console.log(mypassword+"<-->"+userDetail.user_password)
       if(i.user_password === userDetail.user_password
         && i.user_moblieNo===userDetail.user_moblieNo
             && i.user_Name === userDetail.user_Name){
