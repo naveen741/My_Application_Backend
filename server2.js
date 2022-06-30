@@ -53,7 +53,7 @@ app.post('/checkdata',(req,res)=>{
   //console.log(req.body);
   const userDetail=req.body;
   // const sql=`select * from mytable;`
-  const flag={message:'INCORRECT DETAILS'};
+  const flag={message:'USER NOT FOUND'};
   const mykey = crypto.createCipher('aes-128-cbc', 'userPassword');
   let userPassword = mykey.update(userDetail.user_password, 'utf8', 'hex')
   userPassword += mykey.final('hex');
@@ -62,6 +62,9 @@ app.post('/checkdata',(req,res)=>{
     // console.log(JSON.stringify(result))
     if(result.length !== 0 ){
       flag.message='SUCCESS';
+    }
+    else{
+      flag.message='USER NOT FOUND'
     }
   //   const allUserDetail= result
   //   // console.log(allUserDetail);
