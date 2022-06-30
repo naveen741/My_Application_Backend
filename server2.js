@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
       .end()
   })
 app.post('/savedata',(req,res)=>{
-    console.log(req.body);
+    // console.log(req.body);
     const userDetail=req.body;
     const mykey = crypto.createCipher('aes-128-cbc', 'userPassword');
     let userPassword = mykey.update(userDetail.user_password, 'utf8', 'hex')
@@ -54,26 +54,32 @@ app.post('/checkdata',(req,res)=>{
   const userDetail=req.body;
   // const sql=`select * from mytable;`
   const flag={message:'INCORRECT DETAILS'};
-  collection.find({}).toArray((err, result)=>{
+  const mykey = crypto.createCipher('aes-128-cbc', 'userPassword');
+  let userPassword = mykey.update(userDetail.user_password, 'utf8', 'hex')
+  userPassword += mykey.final('hex');
+  collection.find({user_Name:userDetail.user_Name, user_moblieNo: userDetail.user_moblieNo, user_password: userPassword }).toArray((err, result)=>{
     if(err) throw err
-    //console.log(JSON.stringify(result))
-    const allUserDetail= result
-    // console.log(allUserDetail);
-    allUserDetail.map((i)=>{
-      const mykey = crypto.createDecipher('aes-128-cbc', 'userPassword');
-      let mypassword = mykey.update(i.user_password, 'hex', 'utf8')
-      mypassword += mykey.final('utf8');
-      i.user_password=mypassword;
-      // console.log(mypassword+"<-->"+userDetail.user_password)
-      if(i.user_password === userDetail.user_password
-        && i.user_moblieNo===userDetail.user_moblieNo
-            && i.user_Name === userDetail.user_Name){
-         flag.message='SUCCESS';
-         console.log(flag.message)
-      }
+    // console.log(JSON.stringify(result))
+    if(result.length !== 0 ){
+      flag.message='SUCCESS';
+    }
+  //   const allUserDetail= result
+  //   // console.log(allUserDetail);
+  //   allUserDetail.map((i)=>{
+  //     const mykey = crypto.createDecipher('aes-128-cbc', 'userPassword');
+  //     let mypassword = mykey.update(i.user_password, 'hex', 'utf8')
+  //     mypassword += mykey.final('utf8');
+  //     i.user_password=mypassword;
+  //     // console.log(mypassword+"<-->"+userDetail.user_password)
+  //     if(i.user_password === userDetail.user_password
+  //       && i.user_moblieNo===userDetail.user_moblieNo
+  //           && i.user_Name === userDetail.user_Name){
+  //        flag.message='SUCCESS';
+  //        console.log(flag.message)
+  //     }
           
         
-    });
+  //   });
     res.status(200).send({ status: 200, message: flag.message })
   }) 
 });
